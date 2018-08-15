@@ -27,14 +27,14 @@
 ### data-*
 - data-custom : [data-custom-text]와 폼요소의 부모이며 값은 폼요소 구분자로 넣어주세요.
   - 예시 : select, select_multiple, checkbox, radio, file, file_multiple
-- data-custom-text : [data-custom]에 존재해야하며 상태에 따른 문자를 바꿀 요소입니다.
-- data-custom-text-overflow : [data-custom-text]에 지정가능하며 넓이값을 지정하면 말줄임이 생성됩니다.
+    - data-custom-text : 상태에 따른 문자를 바꿀 요소이며 값을 지정하면 기본값이 됩니다.
+      - data-custom-text-overflow : 넓이값을 지정하면 말줄임이 생성됩니다.
 
 ### 참고사항
-- 내부에 필요한만큼 요소를 감쌀 수 있습니다.
+- [data-custom]안에 data-custom-text와 폼요소가 각 1개씩만 존재햐야합니다.
 - [data-custom]안에 [data-custom]은 올 수 없습니다.
-- [data-custom]안에 폼요소를 한개만 넣어주세요.
 - data-* 속성은 유지한채 요소변경 가능합니다.
+- 내부에 필요한만큼 요소를 감쌀 수 있습니다.
 
 ## 제이쿼리 개발버전
 1.12.4
