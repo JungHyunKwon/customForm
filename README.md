@@ -31,7 +31,7 @@
       - data-custom-text-overflow : 넓이값을 지정하면 말줄임이 생성됩니다.
 
 ### 참고사항
-- [data-custom]안에 data-custom-text와 폼요소가 각 1개씩만 존재햐야합니다.
+- [data-custom]안에 [data-custom-text]와 폼요소가 각 1개씩만 존재햐야합니다.
 - [data-custom]안에 [data-custom]은 올 수 없습니다.
 - data-* 속성은 유지한채 요소변경 가능합니다.
 - 내부에 필요한만큼 요소를 감쌀 수 있습니다.
