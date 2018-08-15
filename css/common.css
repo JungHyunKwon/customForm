@@ -12,8 +12,6 @@ input[type='reset'], button[type='reset'] {cursor:pointer;}
 select[disabled], input[type='checkbox'][disabled], input[type='radio'][disabled], input[type='file'][disabled], input[type='reset'][disabled], button[type='reset'][disabled] {cursor:default;}
 
 /* 기본 */
-html, body {position:relative; height:100%;}
-body {word-wrap:break-word; line-height:normal; -webkit-text-size-adjust:none;}
 :before, :after {display:none; content:'';}
 
 /* 공통 */
