@@ -18,19 +18,19 @@
 ## 네임스페이스
 - customForm
 
-### 활성화되는 순간
+## 활성화되는 순간
 - select : 포커스가 들어갔을때, 나갔을때
 - input[type='checkbox'] : 변경되었을때
 - input[type='radio'] : 변경되었을때
 - input[type='file'] : 파일이 선택되어 있을때
 
-### data-*
+## data-*
 - data-custom : [data-custom-text]와 폼요소의 부모이며 값은 폼요소 구분자로 넣어주세요.
   - 예시 : select, select_multiple, checkbox, radio, file, file_multiple
     - data-custom-text : 상태에 따른 문자를 바꿀 요소이며 값을 지정하면 기본값이 됩니다.
       - data-custom-text-overflow : 넓이값을 지정하면 말줄임이 생성됩니다.
 
-### 참고사항
+## 참고사항
 - [data-custom]안에 [data-custom-text]와 폼요소가 각 1개씩만 존재햐야합니다.
 - [data-custom]안에 [data-custom]은 올 수 없습니다.
 - data-* 속성은 유지한채 요소변경 가능합니다.
