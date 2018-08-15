@@ -1,0 +1,35 @@
+@charset 'utf-8';
+
+/* 초기화 */
+body {margin:0;}
+form {position:relative;}
+legend {overflow:hidden; position:absolute; top:0; left:0; width:100%; height:1px; font-size:0;}
+fieldset {min-width:0; padding:0; border-width:0;}
+select {padding:0; cursor:pointer;}
+input[type='checkbox'] {margin:0; cursor:pointer;}
+input[type='radio'] {margin-top:0; margin-right:0; margin-left:0; cursor:pointer;}
+input[type='file'] {cursor:pointer;}
+input[type='reset'], button[type='reset'] {cursor:pointer;}
+select[disabled], input[type='checkbox'][disabled], input[type='radio'][disabled], input[type='file'][disabled], input[type='reset'][disabled], button[type='reset'][disabled] {cursor:default;}
+
+/* 기본 */
+html, body {position:relative; height:100%;}
+body {word-wrap:break-word; line-height:normal; -webkit-text-size-adjust:none;}
+:before, :after {display:none; content:'';}
+
+/* 공통 */
+[data-custom], [data-custom]:before, [data-custom]:after, [data-custom] [data-custom-text], [data-custom] [data-custom-text]:before, [data-custom] [data-custom-text]:after {transition-property:none; transition-duration:0.25s; transition-timing-function:linear;}
+[data-custom]:before, [data-custom]:after, [data-custom] [data-custom-text]:before, [data-custom] [data-custom-text]:after {background-repeat:no-repeat; background-position:center center; vertical-align:middle;}
+[data-custom] {display:inline-block; position:relative; vertical-align:middle;}
+[data-custom] [data-custom-text] {display:inline-block; position:relative;}
+[data-custom] [data-custom-text][data-custom-text-overflow] {overflow:hidden; white-space:nowrap; text-overflow:ellipsis;}
+[data-custom] select, [data-custom] input[type='checkbox'], [data-custom] input[type='radio'], [data-custom] input[type='file'] {opacity:0; position:absolute; top:0; left:0; width:100%; height:100%;}
+
+/* 셀렉트 */
+[data-custom='select_multiple'] select[multiple] optgroup, [data-custom='select_multiple'] select[multiple] option {visibility:hidden;}
+[data-custom='select_multiple'].active select[multiple] optgroup, [data-custom='select_multiple'].active select[multiple] option {visibility:visible;}
+[data-custom='select_multiple'].active select[multiple] {opacity:1; top:100%; height:auto;}
+
+/* 체크박스, 라디오 */
+[data-custom='checkbox'] [data-custom-text]:after, [data-custom='radio'] [data-custom-text]:after {display:inline-block; width:1px; height:1px; font-size:0; content:'미선택';}
+[data-custom='checkbox'].active [data-custom-text]:after, [data-custom='radio'].active [data-custom-text]:after {content:'선택';}
