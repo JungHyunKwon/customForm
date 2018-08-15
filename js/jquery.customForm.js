@@ -12,6 +12,7 @@ try {
 			$(function() {
 				var $custom = $('[data-custom]'),
 					$customElement = $custom.find('select, input[type="checkbox"], input[type="radio"], input[type="file"]'),
+					$radio = $customElement.filter('input[type="radio"]'),
 					$reset = $('[type="reset"]').filter('input, button');
 				
 				$customElement.on('change.customForm', function(event) {
@@ -56,7 +57,7 @@ try {
 						}else if(type === 'radio') {
 							var $parentsForm = $this.parents('form');
 
-							$customElement.filter('input[type="radio"][name="' + (this.name || '') + '"]').each(function(index, element) {
+							$radio.filter('[name="' + (this.name || '') + '"]').each(function(index, element) {
 								var $element = $(element),
 									$custom = $element.parents('[data-custom]'),
 									$form = $element.parents('form');
