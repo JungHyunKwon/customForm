@@ -23,6 +23,7 @@ select[disabled], input[type='checkbox'][disabled], input[type='radio'][disabled
 [data-custom] select, [data-custom] input[type='checkbox'], [data-custom] input[type='radio'], [data-custom] input[type='file'] {opacity:0; position:absolute; top:0; left:0; width:100%; height:100%;}
 
 /* 셀렉트 */
+[data-custom='select'] select, [data-custom='select_multiple'] select[multiple], [data-custom='select_multiple'] select[multiple] optgroup, [data-custom='select_multiple'] select[multiple] option {transition-property:none;}
 [data-custom='select_multiple'] select[multiple] optgroup, [data-custom='select_multiple'] select[multiple] option {visibility:hidden;}
 [data-custom='select_multiple'].active select[multiple] optgroup, [data-custom='select_multiple'].active select[multiple] option {visibility:visible;}
 [data-custom='select_multiple'].active select[multiple] {opacity:1; top:100%; height:auto;}
