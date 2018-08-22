@@ -15,8 +15,8 @@ select[disabled], input[type='checkbox'][disabled], input[type='radio'][disabled
 :before, :after {display:none; content:'';}
 
 /* 공통 */
-[data-custom], [data-custom]:before, [data-custom]:after, [data-custom] [data-custom-text], [data-custom] [data-custom-text]:before, [data-custom] [data-custom-text]:after {transition:all 0.25s linear;}
-[data-custom]:before, [data-custom]:after, [data-custom] [data-custom-text]:before, [data-custom] [data-custom-text]:after {background-repeat:no-repeat; background-position:center center; vertical-align:middle;}
+[data-custom], [data-custom]:before, [data-custom]:after, [data-custom] *, [data-custom] :before, [data-custom] :after {transition:all 0.25s linear;}
+[data-custom]:before, [data-custom]:after, [data-custom] :before, [data-custom] :after {background-repeat:no-repeat; background-position:center center; font-size:0; vertical-align:middle;}
 [data-custom] {display:inline-block; position:relative; vertical-align:middle;}
 [data-custom] [data-custom-text] {display:inline-block; position:relative;}
 [data-custom] [data-custom-text][data-custom-text-overflow] {overflow:hidden; white-space:nowrap; text-overflow:ellipsis;}
