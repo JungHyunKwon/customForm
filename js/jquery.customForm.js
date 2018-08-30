@@ -75,7 +75,7 @@ try {
 						//파일일때
 						}else if(type === 'file') {
 							var files = this.files || this.value;
-							
+							console.log(files);
 							//파일이 없을때
 							if(!files) {
 								files = [];
