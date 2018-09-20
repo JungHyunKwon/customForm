@@ -55,19 +55,14 @@ try {
 						
 						//라디오일때
 						}else if(type === 'radio') {
-							var $parentsForm = $this.parents('form');
-
-							$radio.filter('[name="' + (this.name || '') + '"]').each(function(index, element) {
+							$radio.each(function(index, element) {
 								var $element = $(element),
-									$custom = $element.parents('[data-custom]'),
-									$form = $element.parents('form');
-								
+									$custom = $element.parents('[data-custom]');
+
 								//체크되어 있을때
 								if($element.is(':checked')) {
 									$custom.addClass('active');
-								
-								//선택된 라디오의 부모가 없으면서 부모에 폼이 없으거나 선택된 라디오의 부모가 선택된 라디오의 부모의 폼과 같을때
-								}else if((!$parentsForm.length && !$form.length) || $parentsForm.is($form)) {
+								}else{
 									$custom.removeClass('active');
 								}
 							});
@@ -75,7 +70,7 @@ try {
 						//파일일때
 						}else if(type === 'file') {
 							var files = this.files || this.value;
-							console.log(files);
+
 							//파일이 없을때
 							if(!files) {
 								files = [];
