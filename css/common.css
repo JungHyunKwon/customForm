@@ -19,7 +19,7 @@ select[disabled], input[type='checkbox'][disabled], input[type='radio'][disabled
 [data-custom], [data-custom]:before, [data-custom]:after, [data-custom] *, [data-custom] :before, [data-custom] :after {transition:all 0.25s linear;}
 [data-custom]:before, [data-custom]:after, [data-custom] :before, [data-custom] :after {background-repeat:no-repeat; background-position:center center; font-size:0; vertical-align:middle;}
 [data-custom] {display:inline-block; position:relative; vertical-align:middle;}
-[data-custom] [data-custom-text] {display:block; position:relative;}
+[data-custom] [data-custom-text] {display:inline-block; position:relative;}
 [data-custom] [data-custom-text][data-custom-text-overflow] {overflow:hidden; white-space:nowrap; text-overflow:ellipsis;}
 [data-custom] select, [data-custom] input[type='checkbox'], [data-custom] input[type='radio'], [data-custom] input[type='file'] {opacity:0; position:absolute; top:0; left:0; width:100%; height:100%;}
 
