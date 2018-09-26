@@ -17,7 +17,7 @@ select[disabled], input[type='checkbox'][disabled], input[type='radio'][disabled
 /* 공통 */
 [data-custom] {font-size:0; line-height:0;}
 [data-custom], [data-custom]:before, [data-custom]:after, [data-custom] *, [data-custom] :before, [data-custom] :after {transition:all 0.25s linear;}
-[data-custom]:before, [data-custom]:after, [data-custom] :before, [data-custom] :after {background-repeat:no-repeat; background-position:center center; font-size:0; vertical-align:middle;}
+[data-custom]:before, [data-custom]:after, [data-custom] :before, [data-custom] :after {background-repeat:no-repeat; background-position:center; font-size:0; line-height:0; vertical-align:middle;}
 [data-custom] {display:inline-block; position:relative; vertical-align:middle;}
 [data-custom] [data-custom-text] {display:inline-block; position:relative;}
 [data-custom] [data-custom-text][data-custom-text-overflow] {overflow:hidden; white-space:nowrap; text-overflow:ellipsis;}
@@ -28,7 +28,3 @@ select[disabled], input[type='checkbox'][disabled], input[type='radio'][disabled
 [data-custom='select_multiple'] select[multiple] optgroup, [data-custom='select_multiple'] select[multiple] option {visibility:hidden;}
 [data-custom='select_multiple'].active select[multiple] optgroup, [data-custom='select_multiple'].active select[multiple] option {visibility:visible;}
 [data-custom='select_multiple'].active select[multiple] {opacity:1; top:100%; height:auto;}
-
-/* 체크박스, 라디오 */
-[data-custom='checkbox'] [data-custom-text]:after, [data-custom='radio'] [data-custom-text]:after {display:inline-block; width:1px; height:1px; font-size:0; content:'미선택';}
-[data-custom='checkbox'].active [data-custom-text]:after, [data-custom='radio'].active [data-custom-text]:after {content:'선택';}
