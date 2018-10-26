@@ -7,7 +7,7 @@ try {
 	(function($) {
 		'use strict';
 
-		//제이쿼리가 함수일때
+		//제이쿼리가 함수일 때
 		if(typeof $ === 'function') {
 			$(function() {
 				var $custom = $('[data-custom]'),
@@ -25,7 +25,7 @@ try {
 						separator = ', ',
 						text = '';
 					
-					//셀렉트일때
+					//셀렉트일 때
 					if(tagName === 'select') {
 						var $selectedOption = $this.find('option:selected');
 
@@ -35,31 +35,31 @@ try {
 
 						text = text.substring(0, text.length - separator.length);
 
-						//값이 없을때
+						//값이 없을 때
 						if(!text) {
 							text = customText;
 						}
 
 						$customText.text(text);
 					
-					//인풋일때
+					//인풋일 때
 					}else if(tagName === 'input') {
-						//체크박스일때
+						//체크박스일 때
 						if(type === 'checkbox') {
-							//체크되어 있을때
+							//체크되어 있을 때
 							if($this.is(':checked')) {
 								$custom.addClass('active');
 							}else{
 								$custom.removeClass('active');
 							}			
 						
-						//라디오일때
+						//라디오일 때
 						}else if(type === 'radio') {
 							$radio.each(function(index, element) {
 								var $element = $(element),
 									$custom = $element.parents('[data-custom]');
 
-								//체크되어 있을때
+								//체크되어 있을 때
 								if($element.is(':checked')) {
 									$custom.addClass('active');
 								}else{
@@ -67,16 +67,16 @@ try {
 								}
 							});
 						
-						//파일일때
+						//파일일 때
 						}else if(type === 'file') {
 							var files = this.files || this.value;
 
-							//파일이 없을때
+							//파일이 없을 때
 							if(!files) {
 								files = [];
 							}
 
-							//문자일때
+							//문자일 때
 							if(typeof files === 'string') {
 								files = [files];
 							}
@@ -87,14 +87,14 @@ try {
 
 							text = text.substring(0, text.length - separator.length);
 
-							//값이 없을때
+							//값이 없을 때
 							if(!text) {
 								text = customText;
 							}
 
 							$customText.text(text);
 							
-							//파일이 선택되어 있을때
+							//파일이 선택되어 있을 때
 							if(files.length) {
 								$custom.addClass('active');	
 							}else{
@@ -106,7 +106,7 @@ try {
 					var $this = $(this),
 						tagName = this.tagName.toLowerCase();
 					
-					//셀렉트일때
+					//셀렉트일 때
 					if(tagName === 'select') {
 						$this.parents('[data-custom]').addClass('active');
 					}
@@ -114,14 +114,14 @@ try {
 					var $this = $(this),
 						tagName = this.tagName.toLowerCase();
 					
-					//셀렉트일때
+					//셀렉트일 때
 					if(tagName === 'select') {
 						$this.parents('[data-custom]').removeClass('active');
 					}
 				}).each(function(index, element) {
 					var $element = $(element);
 					
-					//비활성화일때
+					//비활성화일 때
 					if($element.attr('disabled')) {
 						$element.parents('[data-custom]').addClass('disabled');
 					}

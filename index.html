@@ -8,7 +8,7 @@
 	<link href="css/common.css" type="text/css" rel="stylesheet" />
 	<link href="css/style.css" type="text/css" rel="stylesheet" />
 	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-	<script src="js/jquery.customForm.js"></script>
+	<script src="js/jquery.customForm.min.js"></script>
 </head>
 <body>
 <h1>customForm</h1>
@@ -72,29 +72,6 @@
 		<h2>input[type='reset']</h2>
 		<input type="reset" value="초기화" />
 	</fieldset>
-</form>
-
-<script type="text/javascript">
-
- function getRealPath(obj){
-  obj.select();
-
- 
-
-  // document.selection.createRange().text.toString(); 이게 실행이 안된다면....
-
-  // document.selection.createRangeCollection()[0].text.toString(); 이걸로....
-  console.log(obj.selection);
-  document.upimage.real_path.value = document.selection.createRangeCollection()[0].text.toString();
-
-}
-</script>
-
- 
-<form name="upimage">
-<input type="file" id="uploadInput" name="uploadInput" onchange="getRealPath(this);" />
-
-<input type="hidden" id="real_path" name="real_path" value="" />
 </form>
 </body>
 </html>
