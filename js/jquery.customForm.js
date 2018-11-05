@@ -147,6 +147,6 @@ try {
 			throw '제이쿼리가 없습니다.';
 		}
 	})(window.jQuery);
-}catch(error) {
-	console.error(error);
+}catch(e) {
+	console.error(e);
 }
