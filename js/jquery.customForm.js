@@ -29,10 +29,10 @@ try {
 					//셀렉트일 때
 					if(tagName === 'select') {
 						var $selectedOption = $this.find('option:selected');
-
-						$selectedOption.each(function(index, element) {
-							text += $(element).text() + separator;
-						});
+						
+						for(var i = 0, selectedOptionLength = $selectedOption.length; i < selectedOptionLength; i++) {
+							text += $selectedOption.eq(i).text() + separator;
+						}
 
 						text = text.substring(0, text.length - separator.length);
 
@@ -56,17 +56,16 @@ try {
 						
 						//라디오일 때
 						}else if(type === 'radio') {
-							$radio.each(function(index, element) {
-								var $element = $(element),
-									$custom = $element.parents('[data-custom]');
+							for(var i = 0, radioLength = $radio.length; i < radioLength; i++) {
+								var $custom = $radio.eq(i).parents('[data-custom]');
 
 								//체크되어 있을 때
-								if($element.is(':checked')) {
+								if($radio[i].checked) {
 									$custom.addClass('active');
 								}else{
 									$custom.removeClass('active');
 								}
-							});
+							}
 						
 						//파일일 때
 						}else if(type === 'file') {
@@ -81,10 +80,12 @@ try {
 							if(typeof files === 'string') {
 								files = [files];
 							}
+							
+							for(var i = 0, filesLength = files.length; i < filesLength; i++) {
+								var file = files[i];
 
-							$.each(files, function(index, file) {
 								text += (file.name || file) + separator;
-							});
+							}
 
 							text = text.substring(0, text.length - separator.length);
 
@@ -119,16 +120,14 @@ try {
 					if(tagName === 'select') {
 						$this.parents('[data-custom]').removeClass('active');
 					}
-				}).each(function(index, element) {
-					var $element = $(element);
-					
+				}).trigger('change.customForm');
+				
+				for(var i = 0, customElementLength = $customElement.length; i < customElementLength; i++) {
 					//비활성화일 때
-					if($element.attr('disabled')) {
-						$element.parents('[data-custom]').addClass('disabled');
+					if($customElement[i].disabled) {
+						$customElement.eq(i).parents('[data-custom]').addClass('disabled');
 					}
-
-					$element.triggerHandler('change.customForm');
-				});
+				}
 
 				//초기화
 				$reset.on('click.customForm', function(event) {
@@ -137,9 +136,7 @@ try {
 					
 					$form[0].reset();
 
-					$form.find('[data-custom]').find('select, input[type="checkbox"], input[type="radio"], input[type="file"]').each(function(index, element) {
-						$(element).triggerHandler('change.customForm');
-					});
+					$form.find('[data-custom]').find('select, input[type="checkbox"], input[type="radio"], input[type="file"]').trigger('change.customForm');
 
 					event.preventDefault();
 				});
