@@ -25,7 +25,7 @@ try {
 						type = this.type.toLowerCase(),
 						separator = ', ',
 						text = '';
-					
+					console.log(1);
 					//셀렉트일 때
 					if(tagName === 'select') {
 						var $selectedOption = $this.find('option:selected');
@@ -123,14 +123,14 @@ try {
 				});
 				
 				for(var i = 0, customElementLength = _$customElement.length; i < customElementLength; i++) {
-					var _$customElementI = _$customElement.eq(i);
+					var $customElementI = _$customElement.eq(i);
 
 					//비활성화일 때
 					if(_$customElement[i].disabled) {
-						_$customElementI.parents('[data-custom]').addClass('disabled');
+						$customElementI.parents('[data-custom]').addClass('disabled');
 					}
 
-					_$customElementI.triggerHandler('change.customForm');
+					$customElementI.triggerHandler('change.customForm');
 				}
 
 				//초기화
