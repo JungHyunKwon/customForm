@@ -25,7 +25,7 @@ try {
 						type = this.type.toLowerCase(),
 						separator = ', ',
 						text = '';
-					console.log(1);
+
 					//셀렉트일 때
 					if(tagName === 'select') {
 						var $selectedOption = $this.find('option:selected');
