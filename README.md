@@ -20,7 +20,7 @@
 
 ## 구조
 - .custom_form : .custom_text와 .custom_item 요소의 부모이며 클래스로 구분자를 넣어주세요.
-- 예시 : .custom_select, .custom_checkbox, .custom_radio, .custom_file
+  - 예시 : .custom_select, .custom_checkbox, .custom_radio, .custom_file
 - .multiple : 지원 요소에 multiple 속성이 있을 때 .custom_form에 클래스를 넣어주세요.
 - .custom_text : 상태에 따른 문자를 바꿀 요소이며 선택된 값이 없을 때 요소안의 내용이 기본값이 됩니다.
 - .custom_item : 지원 요소에 클래스를 넣어주세요.
