@@ -8,22 +8,21 @@ select {padding:0; cursor:pointer;}
 input[type='checkbox'] {margin:0; cursor:pointer;}
 input[type='radio'] {margin-top:0; margin-right:0; margin-left:0; cursor:pointer;}
 input[type='file'] {cursor:pointer;}
-input[type='reset'], button[type='reset'] {cursor:pointer;}
-select[disabled], input[type='checkbox'][disabled], input[type='radio'][disabled], input[type='file'][disabled], input[type='reset'][disabled], button[type='reset'][disabled] {cursor:default;}
+[type='reset'] {cursor:pointer;}
+select[disabled], input[type='checkbox'][disabled], input[type='radio'][disabled], input[type='file'][disabled], [type='reset'][disabled] {cursor:default;}
 
 /* 기본 */
 :before, :after {display:none; content:'';}
 
 /* 공통 */
-[data-custom] {font-size:0; line-height:0;}
-[data-custom], [data-custom]:before, [data-custom]:after, [data-custom] [data-custom-text]:before, [data-custom] [data-custom-text]:after {transition:all 0.25s linear;}
-[data-custom]:before, [data-custom]:after, [data-custom] [data-custom-text]:before, [data-custom] [data-custom-text]:after {background-repeat:no-repeat; background-position:center; font-size:0; line-height:0; vertical-align:middle;}
-[data-custom] {display:inline-block; position:relative; vertical-align:middle;}
-[data-custom] [data-custom-text] {display:inline-block; position:relative;}
-[data-custom] [data-custom-text][data-custom-text-overflow] {overflow:hidden; white-space:nowrap; text-overflow:ellipsis;}
-[data-custom] select, [data-custom] input[type='checkbox'], [data-custom] input[type='radio'], [data-custom] input[type='file'] {opacity:0; position:absolute; top:0; left:0; width:100%; height:100%;}
+.custom_form {display:inline-block; position:relative; font-size:0; line-height:0; vertical-align:middle;}
+.custom_form.focus {outline:thin dotted #121212;}
+.custom_form, .custom_form:before, .custom_form:after, .custom_form .custom_text, .custom_form .custom_text:before, .custom_form .custom_text:after {transition:all 0.25s linear;}
+.custom_form:before, .custom_form:after, .custom_form .custom_text:before, .custom_form .custom_text:after {background-repeat:no-repeat; background-position:center; font-size:0; line-height:0; vertical-align:middle;}
+.custom_form .custom_text {display:inline-block; position:relative;}
+.custom_select .custom_item, .custom_file .custom_item, .custom_checkbox .custom_item, .custom_radio .custom_item {opacity:0; position:absolute; top:0; left:0; width:100%; height:100%;}
 
-/* 셀렉트 */
-[data-custom='select_multiple'] select[multiple] optgroup, [data-custom='select_multiple'] select[multiple] option {visibility:hidden;}
-[data-custom='select_multiple'].active select[multiple] optgroup, [data-custom='select_multiple'].active select[multiple] option {visibility:visible;}
-[data-custom='select_multiple'].active select[multiple] {opacity:1; top:100%; height:auto;}
+/* 다중 셀렉트 */
+.custom_select.multiple .custom_item optgroup, .custom_select.multiple .custom_item option {visibility:hidden;}
+.custom_select.multiple.focus .custom_item optgroup, .custom_select.multiple.focus .custom_item option {visibility:visible;}
+.custom_select.multiple.focus .custom_item {opacity:1; top:100%; height:auto;}

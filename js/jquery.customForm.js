@@ -1,5 +1,4 @@
 /**
- * @name customForm
  * @author JungHyunKwon
  * @since 2017-12-06
  * @version 1.0.0
@@ -10,144 +9,225 @@ try {
 
 		//제이쿼리가 함수일 때
 		if(typeof $ === 'function') {
-			$(function() {
-				var _$custom = $('[data-custom]'),
-					_$customElement = _$custom.find('select, input[type="checkbox"], input[type="radio"], input[type="file"]'),
-					_$radio = _$customElement.filter('input[type="radio"]'),
-					_$reset = $('[type="reset"]').filter('input, button');
+			var _separator = ', ',
+				_separatorLength = _separator.length;
+
+			/**
+			 * @name customForm
+			 * @param {string} method
+			 * @param {string} value
+			 * @return {jQuery || string || array [object {
+			       $element : jQuery,
+				   value : array [string] || string
+			   }]}
+			 */
+			$.fn.customForm = function(method, value) {
+				var methodIsString = typeof method === 'string',
+					valueIsString = typeof value === 'string',
+					hasMethod = method && methodIsString,
+					hasValue = arguments.hasOwnProperty(1),
+					result = [];
 				
-				_$customElement.on('change.customForm', function(event) {
-					var $this = $(this),
-						$custom = $this.parents('[data-custom]'),
-						$customText = $custom.find('[data-custom-text]'),
-						customText = $customText.attr('data-custom-text') || '',
-						tagName = this.tagName.toLowerCase(),
-						type = this.type.toLowerCase(),
-						separator = ', ',
-						text = '';
-
-					//셀렉트일 때
-					if(tagName === 'select') {
-						var $selectedOption = $this.find('option:selected');
-						
-						for(var i = 0, selectedOptionLength = $selectedOption.length; i < selectedOptionLength; i++) {
-							text += $selectedOption.eq(i).text() + separator;
-						}
-
-						text = text.substring(0, text.length - separator.length);
-
-						//값이 없을 때
-						if(!text) {
-							text = customText;
-						}
-
-						$customText.text(text);
-					
-					//인풋일 때
-					}else if(tagName === 'input') {
-						//체크박스일 때
-						if(type === 'checkbox') {
-							//체크되어 있을 때
-							if(this.checked) {
-								$custom.addClass('active');
-							}else{
-								$custom.removeClass('active');
-							}			
-						
-						//라디오일 때
-						}else if(type === 'radio') {
-							for(var i = 0, radioLength = _$radio.length; i < radioLength; i++) {
-								var $custom = _$radio.eq(i).parents('[data-custom]');
-
-								//체크되어 있을 때
-								if(_$radio[i].checked) {
-									$custom.addClass('active');
-								}else{
-									$custom.removeClass('active');
-								}
-							}
-						
-						//파일일 때
-						}else if(type === 'file') {
-							var files = this.files || this.value;
-
-							//파일이 없을 때
-							if(!files) {
-								files = [];
-							}
-
-							//문자일 때
-							if(typeof files === 'string') {
-								files = [files];
-							}
-							
-							for(var i = 0, filesLength = files.length; i < filesLength; i++) {
-								var file = files[i];
-
-								text += (file.name || file) + separator;
-							}
-
-							text = text.substring(0, text.length - separator.length);
-
-							//값이 없을 때
-							if(!text) {
-								text = customText;
-							}
-
-							$customText.text(text);
-							
-							//파일이 선택되어 있을 때
-							if(files.length) {
-								$custom.addClass('active');	
-							}else{
-								$custom.removeClass('active');
-							}
-						}
-					}
-				}).on('focusin.customForm', function(event) {
-					var $this = $(this),
-						tagName = this.tagName.toLowerCase();
-					
-					//셀렉트일 때
-					if(tagName === 'select') {
-						$this.parents('[data-custom]').addClass('active');
-					}
-				}).on('focusout.customForm', function(event) {
-					var $this = $(this),
-						tagName = this.tagName.toLowerCase();
-					
-					//셀렉트일 때
-					if(tagName === 'select') {
-						$this.parents('[data-custom]').removeClass('active');
-					}
-				});
-				
-				for(var i = 0, customElementLength = _$customElement.length; i < customElementLength; i++) {
-					var $customElementI = _$customElement.eq(i);
-
-					//비활성화일 때
-					if(_$customElement[i].disabled) {
-						$customElementI.parents('[data-custom]').addClass('disabled');
-					}
-
-					$customElementI.triggerHandler('change.customForm');
+				//문자일 때
+				if(methodIsString) {
+					method = method.toLowerCase();
 				}
 
-				//초기화
-				_$reset.on('click.customForm', function(event) {
-					var $this = $(this),
-						$form = $this.parents('form'),
-						$customElement = $form.find('[data-custom]').find('select, input[type="checkbox"], input[type="radio"], input[type="file"]');
+				this.each(function(index, element) {
+					var $element = $(element);
 					
-					$form[0].reset();
-					
-					for(var i = 0, customElementLength = $customElement.length; i < customElementLength; i++) {
-						$customElement.eq(i).triggerHandler('change.customForm');
-					}
+					//클래스가 있을 때
+					if($element.hasClass('custom_form')) {
+						var data = $element.data(),
+							$customText = $element.find('.custom_text'),
+							$customItem = $element.find('.custom_item');
+							
+						//메서드일 때
+						if(hasMethod) {
+							var isGet = false,
+								resultValue = {
+									$element : $element
+								};
 
-					event.preventDefault();
+							//새로고침
+							if(method === 'refresh') {
+								$customItem.triggerHandler('change.customForm');
+							
+							//소멸
+							}else if(method === 'destroy') {
+								delete data.customDefaultText;
+								$element.removeClass('active');
+								$customItem.off('change.customForm focusin.customForm focusout.customForm');
+								
+							//포커스
+							}else if(method === 'focus') {
+								$customItem.focus();
+							
+							//초기화
+							}else if(method === 'reset') {
+								$customItem.val(($customItem.is('select[multiple]')) ? NaN : '');
+								$element.customForm('refresh');
+								
+							//값
+							}else if(method === 'val') {
+								//값이 있을 때
+								if(hasValue) {
+									//문자일 때
+									if(valueIsString) {
+										$customItem.val(value);
+										$element.customForm('refresh');
+									}
+								}else{
+									isGet = true;
+									resultValue.value = $customItem.val();
+								}
+							
+							//기본값
+							}else if(method === 'defaulttext') {
+								//값이 있을 때
+								if(hasValue) {
+									//문자일 때
+									if(valueIsString) {
+										data.customDefaultText = value;
+										$element.customForm('refresh');
+									}
+								}else{
+									isGet = true;
+									resultValue.value = data.customDefaultText;
+								}						
+							}
+							
+							//얻을 때
+							if(isGet) {
+								result.push(resultValue);
+							}
+						}else{
+							//파괴
+							$element.customForm('destroy');
+						
+							//기본값 입력
+							data.customDefaultText = $customText.text();
+
+							$customItem.on('change.customForm', function(event) {
+								var tagName = this.tagName.toLowerCase(),
+									type = this.type.toLowerCase(),
+									text = '';
+
+								//셀렉트일 때
+								if(tagName === 'select') {
+									var $selectedOption = $(this).find('option:selected'),
+										selectedOptionLength = $selectedOption.length;
+
+									for(var i = 0; i < selectedOptionLength; i++) {
+										text += $selectedOption.eq(i).text() + _separator;
+									}
+
+									text = text.substring(0, text.length - _separatorLength);
+
+									//값이 없을 때
+									if(!text) {
+										text = data.customDefaultText;
+									}
+
+									//선택된 옵션이 있을 때
+									if(selectedOptionLength) {
+										$element.addClass('active');
+									}else{
+										$element.removeClass('active');
+									}
+
+									$customText.text(text);
+								
+								//인풋일 때
+								}else if(tagName === 'input') {
+									//체크박스일 때
+									if(type === 'checkbox') {
+										//체크되어 있을 때
+										if(this.checked) {
+											$element.addClass('active');
+										}else{
+											$element.removeClass('active');
+										}			
+									
+									//라디오일 때
+									}else if(type === 'radio') {
+										var $customRadioItem = $('.custom_radio .custom_item');
+
+										for(var i = 0, customRadioItemLength = $customRadioItem.length; i < customRadioItemLength; i++) {
+											var $customRadio = $customRadioItem.eq(i).parents('.custom_radio');
+
+											//체크되어 있을 때
+											if($customRadioItem[i].checked) {
+												$customRadio.addClass('active');
+											}else{
+												$customRadio.removeClass('active');
+											}
+										}
+									
+									//파일일 때
+									}else if(type === 'file') {
+										var files = this.files || this.value;
+
+										//파일이 없을 때
+										if(!files) {
+											files = [];
+										}
+
+										//문자일 때
+										if(typeof files === 'string') {
+											files = [files];
+										}
+										
+										var filesLength = files.length;
+
+										for(var i = 0; i < filesLength; i++) {
+											var file = files[i];
+
+											text += (file.name || file) + _separator;
+										}
+
+										text = text.substring(0, text.length - _separatorLength);
+
+										//값이 없을 때
+										if(!text) {
+											text = data.customDefaultText;
+										}
+
+										$customText.text(text);
+										
+										//파일이 선택되어 있을 때
+										if(filesLength) {
+											$element.addClass('active');
+										}else{
+											$element.removeClass('active');
+										}
+									}
+								}
+							}).on('focusin.customForm', function(event) {
+								$element.addClass('focus');
+							}).on('focusout.customForm', function(event) {
+								$element.removeClass('focus');
+							});
+							
+							//새로고침
+							$element.customForm('refresh');						
+						}
+					}
 				});
-			});
+				
+				var resultLength = result.length;
+
+				//결과가 있을 때
+				if(resultLength === 1) {
+					result = result[0].value;
+				
+				//결과가 없을 때
+				}else if(!resultLength) {
+					result = this;
+				}
+
+				return result;
+			};
 		}else{
 			throw '제이쿼리가 없습니다.';
 		}
