@@ -15,9 +15,6 @@
 
 .custom_form에 부여됩니다.
 
-## 네임스페이스
-- customForm
-
 ## 구조
 - .custom_form : .custom_text와 .custom_item 요소의 부모이며 클래스로 구분자를 넣어주세요.
   - 예시 : .custom_select, .custom_checkbox, .custom_radio, .custom_file
