@@ -41,6 +41,7 @@ defaultText | string | jQuery \|\| array [object {$element : jQuery, value : arr
 - .custom_form 안에 .custom_text와 .custom_item이 각 1개씩만 존재해야 합니다.
 - .custom_form 안에 .custom_form은 올 수 없습니다.
 - 내부에 필요한 만큼 요소를 감쌀 수 있으며 .custom_text에는 감쌀 수 없습니다.
+- 기본값은 .custom_text의 값 입니다.
 
 ## 제이쿼리 개발 버전
 1.12.4
