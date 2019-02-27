@@ -10,7 +10,10 @@ try {
 		//제이쿼리가 함수일 때
 		if(typeof $ === 'function') {
 			var _separator = ', ',
-				_separatorLength = _separator.length;
+				_separatorLength = _separator.length,
+				_counter = 0,
+				_index = -1,
+				_defaultText = [];
 
 			/**
 			 * @name customForm
@@ -27,36 +30,24 @@ try {
 					hasMethod = method && methodIsString,
 					hasValue = arguments.hasOwnProperty(1),
 					result = [];
-				
-				//문자일 때
-				if(methodIsString) {
-					method = method.toLowerCase();
-				}
 
 				this.each(function(index, element) {
 					var $element = $(element);
 					
 					//클래스가 있을 때
 					if($element.hasClass('custom_form')) {
-						var data = $element.data(),
-							$customText = $element.find('.custom_text'),
+						var $customText = $element.find('.custom_text'),
 							$customItem = $element.find('.custom_item');
-							
+
 						//메서드일 때
 						if(hasMethod) {
-							var isGet = false,
-								resultValue = {
-									$element : $element
-								};
-
 							//새로고침
 							if(method === 'refresh') {
 								$customItem.triggerHandler('change.customForm');
 							
 							//소멸
 							}else if(method === 'destroy') {
-								delete data.customDefaultText;
-								$element.removeClass('active');
+								$element.removeClass('focus active');
 								$customItem.off('change.customForm focusin.customForm focusout.customForm');
 								
 							//포커스
@@ -66,6 +57,7 @@ try {
 							//초기화
 							}else if(method === 'reset') {
 								$customItem.val(($customItem.is('select[multiple]')) ? NaN : '');
+
 								$element.customForm('refresh');
 								
 							//값
@@ -75,43 +67,60 @@ try {
 									//문자일 때
 									if(valueIsString) {
 										$customItem.val(value);
+
 										$element.customForm('refresh');
 									}
 								}else{
-									isGet = true;
-									resultValue.value = $customItem.val();
+									result.push({
+										$element : $element,
+										value : $customItem.val() || ''
+									});
 								}
-							
+
 							//기본값
-							}else if(method === 'defaulttext') {
+							}else if(method === 'defaultText') {
 								//값이 있을 때
 								if(hasValue) {
 									//문자일 때
 									if(valueIsString) {
-										data.customDefaultText = value;
 										$element.customForm('refresh');
+										
+										_defaultText[_index] = value;
+										
+										$element.customForm('refresh');
+
+										//초기화
+										_index = -1;
 									}
 								}else{
-									isGet = true;
-									resultValue.value = data.customDefaultText;
-								}						
-							}
-							
-							//얻을 때
-							if(isGet) {
-								result.push(resultValue);
+									$element.customForm('refresh');
+
+									result.push({
+										$element : $element,
+										value : _defaultText[_index] || ''
+									});
+
+									//초기화
+									_index = -1;
+								}				
 							}
 						}else{
+							var counter = _counter;
+							
+							//기본값 입력
+							_defaultText.push($customText.text());
+
 							//파괴
 							$element.customForm('destroy');
-						
-							//기본값 입력
-							data.customDefaultText = $customText.text();
 
 							$customItem.on('change.customForm', function(event) {
 								var tagName = this.tagName.toLowerCase(),
 									type = this.type.toLowerCase(),
+									defaultText = _defaultText[counter],
 									text = '';
+								
+								//색인 추가
+								_index = counter;
 
 								//셀렉트일 때
 								if(tagName === 'select') {
@@ -126,7 +135,7 @@ try {
 
 									//값이 없을 때
 									if(!text) {
-										text = data.customDefaultText;
+										text = defaultText;
 									}
 
 									//선택된 옵션이 있을 때
@@ -190,7 +199,7 @@ try {
 
 										//값이 없을 때
 										if(!text) {
-											text = data.customDefaultText;
+											text = defaultText;
 										}
 
 										$customText.text(text);
@@ -210,7 +219,10 @@ try {
 							});
 							
 							//새로고침
-							$element.customForm('refresh');						
+							$element.customForm('refresh');
+							
+							//증가
+							_counter++;
 						}
 					}
 				});
