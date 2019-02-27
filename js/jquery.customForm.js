@@ -57,7 +57,6 @@ try {
 							//초기화
 							}else if(method === 'reset') {
 								$customItem.val(($customItem.is('select[multiple]')) ? NaN : '');
-
 								$element.customForm('refresh');
 								
 							//값
@@ -67,7 +66,6 @@ try {
 									//문자일 때
 									if(valueIsString) {
 										$customItem.val(value);
-
 										$element.customForm('refresh');
 									}
 								}else{
