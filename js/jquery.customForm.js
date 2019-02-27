@@ -10,10 +10,7 @@ try {
 		//제이쿼리가 함수일 때
 		if(typeof $ === 'function') {
 			var _separator = ', ',
-				_separatorLength = _separator.length,
-				_counter = 0,
-				_index = -1,
-				_defaultText = [];
+				_defaultText = '';
 
 			/**
 			 * @name customForm
@@ -27,7 +24,7 @@ try {
 			$.fn.customForm = function(method, value) {
 				var methodIsString = typeof method === 'string',
 					valueIsString = typeof value === 'string',
-					hasMethod = method && methodIsString,
+					isMethod = method && methodIsString,
 					hasValue = arguments.hasOwnProperty(1),
 					result = [];
 
@@ -36,11 +33,11 @@ try {
 					
 					//클래스가 있을 때
 					if($element.hasClass('custom_form')) {
-						var $customText = $element.find('.custom_text'),
-							$customItem = $element.find('.custom_item');
+						var $customText = $element.find('.custom_text:first'),
+							$customItem = $element.find('.custom_item:first');
 
 						//메서드일 때
-						if(hasMethod) {
+						if(isMethod) {
 							//새로고침
 							if(method === 'refresh') {
 								$customItem.triggerHandler('change.customForm');
@@ -48,7 +45,7 @@ try {
 							//소멸
 							}else if(method === 'destroy') {
 								$element.removeClass('focus active');
-								$customItem.off('change.customForm focusin.customForm focusout.customForm');
+								$customItem.off('change.customForm focusin.customForm focusout.customForm customForm:getDefaultText customForm:setDefaultText');
 								
 							//포커스
 							}else if(method === 'focus') {
@@ -81,32 +78,29 @@ try {
 								if(hasValue) {
 									//문자일 때
 									if(valueIsString) {
-										$element.customForm('refresh');
-										
-										_defaultText[_index] = value;
-										
+										_defaultText = value;
+
+										$customItem.triggerHandler('customForm:setDefaultText')
+											
 										$element.customForm('refresh');
 
 										//초기화
-										_index = -1;
+										_defaultText = '';
 									}
 								}else{
-									$element.customForm('refresh');
+									$customItem.triggerHandler('customForm:getDefaultText');
 
 									result.push({
 										$element : $element,
-										value : _defaultText[_index] || ''
+										value : _defaultText
 									});
 
 									//초기화
-									_index = -1;
+									_defaultText = '';
 								}				
 							}
 						}else{
-							var counter = _counter;
-							
-							//기본값 입력
-							_defaultText.push($customText.text());
+							var defaultText = $customText.text();
 
 							//파괴
 							$element.customForm('destroy');
@@ -114,22 +108,18 @@ try {
 							$customItem.on('change.customForm', function(event) {
 								var tagName = this.tagName.toLowerCase(),
 									type = this.type.toLowerCase(),
-									defaultText = _defaultText[counter],
-									text = '';
-								
-								//색인 추가
-								_index = counter;
+									text = [];
 
 								//셀렉트일 때
 								if(tagName === 'select') {
-									var $selectedOption = $(this).find('option:selected'),
+									var $selectedOption = $customItem.find('option:selected'),
 										selectedOptionLength = $selectedOption.length;
-
+										
 									for(var i = 0; i < selectedOptionLength; i++) {
-										text += $selectedOption.eq(i).text() + _separator;
+										text[i] = $selectedOption.eq(i).text();
 									}
 
-									text = text.substring(0, text.length - _separatorLength);
+									text = text.join(_separator);
 
 									//값이 없을 때
 									if(!text) {
@@ -190,10 +180,10 @@ try {
 										for(var i = 0; i < filesLength; i++) {
 											var file = files[i];
 
-											text += (file.name || file) + _separator;
+											text[i] = file.name || file;
 										}
 
-										text = text.substring(0, text.length - _separatorLength);
+										text = text.join(_separator);
 
 										//값이 없을 때
 										if(!text) {
@@ -214,13 +204,15 @@ try {
 								$element.addClass('focus');
 							}).on('focusout.customForm', function(event) {
 								$element.removeClass('focus');
+							}).on('customForm:getDefaultText', function(event) {
+								console.log(defaultText);
+								_defaultText = defaultText;
+							}).on('customForm:setDefaultText', function(event) {
+								defaultText = _defaultText;
 							});
 							
 							//새로고침
 							$element.customForm('refresh');
-							
-							//증가
-							_counter++;
 						}
 					}
 				});
