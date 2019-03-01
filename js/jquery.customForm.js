@@ -10,7 +10,7 @@ try {
 		//제이쿼리가 함수일 때
 		if(typeof $ === 'function') {
 			var _separator = ', ',
-				_defaultText = '';
+				_defaultText;
 
 			/**
 			 * @name customForm
@@ -23,7 +23,7 @@ try {
 			 */
 			$.fn.customForm = function(method, value) {
 				var methodIsString = typeof method === 'string',
-					valueIsString = typeof value === 'string',
+					valueIsString = typeof value === 'string' && value,
 					isMethod = method && methodIsString,
 					hasValue = arguments.hasOwnProperty(1),
 					result = [];
@@ -80,12 +80,12 @@ try {
 									if(valueIsString) {
 										_defaultText = value;
 
-										$customItem.triggerHandler('customForm:setDefaultText')
+										$customItem.triggerHandler('customForm:setDefaultText');
 											
 										$element.customForm('refresh');
 
 										//초기화
-										_defaultText = '';
+										_defaultText = undefined;
 									}
 								}else{
 									$customItem.triggerHandler('customForm:getDefaultText');
@@ -96,7 +96,7 @@ try {
 									});
 
 									//초기화
-									_defaultText = '';
+									_defaultText = undefined;
 								}				
 							}
 						}else{
