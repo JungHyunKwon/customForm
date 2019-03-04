@@ -80,7 +80,7 @@ try {
 									if(valueIsString) {
 										_defaultText = value;
 
-										$customItem.triggerHandler('customForm:setDefaultText');
+										$customItem.triggerHandler('customForm:setDefaultText.customForm');
 											
 										$element.customForm('refresh');
 
@@ -88,7 +88,7 @@ try {
 										_defaultText = undefined;
 									}
 								}else{
-									$customItem.triggerHandler('customForm:getDefaultText');
+									$customItem.triggerHandler('customForm:getDefaultText.customForm');
 
 									result.push({
 										$element : $element,
