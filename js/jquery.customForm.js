@@ -45,7 +45,7 @@ try {
 							//소멸
 							}else if(method === 'destroy') {
 								$element.removeClass('focus active');
-								$customItem.off('change.customForm focusin.customForm focusout.customForm customForm:getDefaultText customForm:setDefaultText');
+								$customItem.off('change.customForm focusin.customForm focusout.customForm customForm:getDefaultText.customForm customForm:setDefaultText.customForm');
 								
 							//포커스
 							}else if(method === 'focus') {
@@ -204,9 +204,9 @@ try {
 								$element.addClass('focus');
 							}).on('focusout.customForm', function(event) {
 								$element.removeClass('focus');
-							}).on('customForm:getDefaultText', function(event) {
+							}).on('customForm:getDefaultText.customForm', function(event) {
 								_defaultText = defaultText;
-							}).on('customForm:setDefaultText', function(event) {
+							}).on('customForm:setDefaultText.customForm', function(event) {
 								defaultText = _defaultText;
 							});
 							
