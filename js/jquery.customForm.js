@@ -205,7 +205,6 @@ try {
 							}).on('focusout.customForm', function(event) {
 								$element.removeClass('focus');
 							}).on('customForm:getDefaultText', function(event) {
-								console.log(defaultText);
 								_defaultText = defaultText;
 							}).on('customForm:setDefaultText', function(event) {
 								defaultText = _defaultText;
