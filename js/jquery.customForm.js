@@ -103,12 +103,12 @@ try {
 						$element.customForm('destroy');
 
 						$customItem.on('change.customForm', function(event) {
-							var tagName = this.tagName.toLowerCase(),
-								type = this.type.toLowerCase(),
+							var tagName = this.tagName,
+								type = this.type,
 								text = [];
 
 							//셀렉트일 때
-							if(tagName === 'select') {
+							if(tagName === 'SELECT') {
 								var $selectedOption = $customItem.find('option:selected'),
 									selectedOptionLength = $selectedOption.length;
 									
@@ -133,7 +133,7 @@ try {
 								$customText.text(text);
 							
 							//인풋일 때
-							}else if(tagName === 'input') {
+							}else if(tagName === 'INPUT') {
 								//체크박스일 때
 								if(type === 'checkbox') {
 									//체크되어 있을 때
@@ -145,10 +145,10 @@ try {
 								
 								//라디오일 때
 								}else if(type === 'radio') {
-									var $customRadioItem = $('.custom_radio .custom_item');
+									var $customRadioItem = $('.custom_form.radio .custom_item');
 
 									for(var i = 0, customRadioItemLength = $customRadioItem.length; i < customRadioItemLength; i++) {
-										var $customRadio = $customRadioItem.eq(i).parents('.custom_radio');
+										var $customRadio = $customRadioItem.eq(i).parents('.custom_form.radio');
 
 										//체크되어 있을 때
 										if($customRadioItem[i].checked) {
