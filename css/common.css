@@ -14,7 +14,7 @@ select {padding:0;}
 
 /* 공통 */
 .custom_form, .custom_form:before, .custom_form:after, .custom_text, .custom_text:before, .custom_text:after {background-repeat:no-repeat; background-position:center; vertical-align:middle; transition:all 0.25s linear;}
-.custom_form, .custom_form:before, .custom_form:after, .custom_text:before, .custom_text:after {font-size:0; line-height:0px;}
+.custom_form, .custom_form:before, .custom_form:after, .custom_text:before, .custom_text:after {font-size:0; line-height:0;}
 .custom_form {display:inline-block;}
 .custom_form, .custom_text {position:relative;}
 .custom_text, .custom_item {display:block;}
