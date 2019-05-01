@@ -3,7 +3,7 @@
 /* 초기화 */
 legend {overflow:hidden; position:absolute; top:0; left:0; width:100%; height:1px; font-size:0;}
 fieldset {min-width:0; padding:0; border-width:0;}
-[type='checkbox'], [type='radio'], [type='file'], select {cursor:pointer;}
+[type='checkbox'], [type='radio'], [type='file'], select {color:inherit; font-size:inherit; font-family:inherit; cursor:pointer;}
 select {padding:0;}
 [type='checkbox'] {margin:0;}
 [type='radio'] {margin-top:0; margin-right:0; margin-left:0;}
@@ -15,10 +15,8 @@ select {padding:0;}
 /* 공통 */
 .custom_form, .custom_form:before, .custom_form:after, .custom_text, .custom_text:before, .custom_text:after {background-repeat:no-repeat; background-position:center; vertical-align:middle; transition:all 0.25s linear;}
 .custom_form, .custom_form:before, .custom_form:after, .custom_text:before, .custom_text:after {font-size:0; line-height:0;}
-.custom_form {display:inline-block;}
-.custom_form, .custom_text {position:relative;}
-.custom_text, .custom_item {display:block;}
-.custom_item {opacity:0; position:absolute; top:0; left:0; width:100%; height:100%;}
+.custom_form, .custom_text {display:inline-block; position:relative;}
+.custom_item {display:block; opacity:0; position:absolute; top:0; left:0; width:100%; height:100%;}
 
 /* 다중 셀렉트 */
 .custom_form.select.multiple optgroup, .custom_form.select.multiple option {visibility:hidden;}

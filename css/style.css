@@ -1,6 +1,6 @@
 @charset "utf-8";
 
-.custom_form {border-radius:3px; padding:9px 17px; border:1px solid #dcdcdc; font-size:16px; line-height:18px;}
-.custom_text {color:#55565a;}
+.custom_form {border-radius:3px; padding:9px 17px; border:1px solid #dcdcdc;}
+.custom_text, .custom_item {color:#55565a; font-size:16px; line-height:18px;}
 .custom_form.active {border-color:transparent; background-color:#2f7de1;}
 .custom_form.active .custom_text {color:#fff;}
