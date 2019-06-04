@@ -172,9 +172,9 @@ try {
 										files = [files];
 									}
 									
-									var fileLength = files.length;
+									var filesLength = files.length;
 
-									for(var i = 0; i < fileLength; i++) {
+									for(var i = 0; i < filesLength; i++) {
 										var file = files[i];
 
 										text[i] = file.name || file;
@@ -190,7 +190,7 @@ try {
 									$customText.text(text);
 									
 									//파일이 선택되어 있을 때
-									if(fileLength) {
+									if(filesLength) {
 										$element.addClass('active');
 									}else{
 										$element.removeClass('active');
