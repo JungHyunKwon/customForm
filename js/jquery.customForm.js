@@ -24,7 +24,6 @@ try {
 			$.fn.customForm = function(method, value) {
 				var methodIsString = typeof method === 'string',
 					valueIsString = typeof value === 'string',
-					isMethod = method && methodIsString,
 					hasValue = arguments.hasOwnProperty(1),
 					result = [];
 
@@ -34,7 +33,7 @@ try {
 						$customItem = $element.find('.custom_item:first');
 
 					//메서드일 때
-					if(isMethod) {
+					if(methodIsString) {
 						//새로고침
 						if(method === 'refresh') {
 							$customItem.triggerHandler('change.customForm');
