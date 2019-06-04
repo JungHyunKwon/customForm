@@ -23,7 +23,7 @@ try {
 			 */
 			$.fn.customForm = function(method, value) {
 				var methodIsString = typeof method === 'string',
-					valueIsString = typeof value === 'string' && value,
+					valueIsString = typeof value === 'string',
 					isMethod = method && methodIsString,
 					hasValue = arguments.hasOwnProperty(1),
 					result = [];
@@ -172,9 +172,9 @@ try {
 										files = [files];
 									}
 									
-									var filesLength = files.length;
+									var fileLength = files.length;
 
-									for(var i = 0; i < filesLength; i++) {
+									for(var i = 0; i < fileLength; i++) {
 										var file = files[i];
 
 										text[i] = file.name || file;
@@ -190,7 +190,7 @@ try {
 									$customText.text(text);
 									
 									//파일이 선택되어 있을 때
-									if(filesLength) {
+									if(fileLength) {
 										$element.addClass('active');
 									}else{
 										$element.removeClass('active');
