@@ -24,7 +24,7 @@
 ## 메서드
 
 ````javascript
-    $(selector).label(method, value);
+$(selector).label(method, value);
 ````
 
 이름 | 매개변수 | 반환 | 설명
