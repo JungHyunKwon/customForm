@@ -13,15 +13,15 @@ select {padding:0;}
 :before, :after {display:none; content:'';}
 
 /* 공통 */
-.custom_form, .custom_form:before, .custom_form:after, .custom_text, .custom_text:before, .custom_text:after {background-repeat:no-repeat; background-position:center; vertical-align:middle; transition:all 0.25s linear;}
-.custom_form, .custom_form:before, .custom_form:after, .custom_text:before, .custom_text:after {font-size:0; line-height:0;}
-.custom_form, .custom_text {display:inline-block; position:relative;}
-.custom_item {display:block; opacity:0; position:absolute; top:0; left:0; width:100%; height:100%;}
+.label, .label:before, .label:after, .label_text, .label_text:before, .label_text:after {background-repeat:no-repeat; background-position:center; vertical-align:middle; transition:all 0.25s linear;}
+.label, .label:before, .label:after, .label_text:before, .label_text:after {font-size:0; line-height:0;}
+.label, .label_text {display:inline-block; position:relative;}
+.label_item {display:block; opacity:0; position:absolute; top:0; left:0; width:100%; height:100%;}
 
 /* 다중 셀렉트 */
-.custom_form.select.multiple optgroup, .custom_form.select.multiple option {visibility:hidden;}
+.label.select.multiple optgroup, .label.select.multiple option {visibility:hidden;}
 
 /* 활성화 */
-.custom_form.focus {outline:thin dotted #121212;}
-.custom_form.select.multiple.focus .custom_item {opacity:1; top:100%; height:auto;}
-.custom_form.select.multiple.focus optgroup, .custom_form.select.multiple.focus option {visibility:visible;}
+.label.focus {outline:thin dotted #121212;}
+.label.select.multiple.focus .label_item {opacity:1; top:100%; height:auto;}
+.label.select.multiple.focus optgroup, .label.select.multiple.focus option {visibility:visible;}
