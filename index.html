@@ -4,40 +4,27 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes" />
-	<title>customForm</title>
+	<title>label</title>
 	<link href="css/common.css" type="text/css" rel="stylesheet" />
 	<link href="css/style.css" type="text/css" rel="stylesheet" />
 	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-	<script src="js/jquery.customForm.min.js"></script>
+	<script src="js/jquery.label.min.js"></script>
 	<script>
 		$(function() {
-			var form = document.form,
-				$customForm = $('.custom_form');
-			
-			//등록
-			$customForm.customForm();
-			
-			//초기화
-			$('[type="reset"]').on('click.customForm', function(event) {
-				form.reset();
-
-				$customForm.customForm('refresh');
-
-				event.preventDefault();
-			});
+			$('.label, :reset').label();
 		});
 	</script>
 </head>
 <body>
-<h1>customForm</h1>
-<form action="#n" method="post" name="form">
+<h1>label</h1>
+<form>
 	<fieldset>
-		<legend>예제</legend>
+		<legend>서식</legend>
 
 		<h2>select</h2>
-		<span class="custom_form select">
-			<span class="custom_text">&nbsp;</span>
-			<select class="custom_item" title="연도">
+		<span class="label select">
+			<span class="label_text">&nbsp;</span>
+			<select class="label_item" title="연도">
 				<option value="">2018</option>
 				<option value="">2017</option>
 				<option value="">2016</option>
@@ -45,9 +32,9 @@
 		</span>
 
 		<h3>multiple</h3>
-		<span class="custom_form select multiple">
-			<span class="custom_text">요일 선택</span>
-			<select multiple class="custom_item" title="요일">
+		<span class="label select multiple">
+			<span class="label_text">요일 선택</span>
+			<select multiple class="label_item" title="요일">
 				<option value="">월요일</option>
 				<option value="">화요일</option>
 				<option value="">수요일</option>
@@ -59,32 +46,32 @@
 		</span>
 
 		<h2>input[type='checkbox']</h2>
-		<span class="custom_form checkbox">
-			<label for="" class="custom_text">checkbox</label>
-			<input type="checkbox" id="" class="custom_item" />
-		</span>
+		<label class="label checkbox">
+			<span class="label_text">checkbox</span>
+			<input type="checkbox" class="label_item" />
+		</label>
 
 		<h2>input[type='radio']</h2>
-		<span class="custom_form radio">
-			<label for="" class="custom_text">radio</label>
-			<input type="radio" id="" name="radio" value="" class="custom_item" />
-		</span>
+		<label class="label radio">
+			<span class="label_text">radio</span>
+			<input type="radio" name="radio" class="label_item" />
+		</label>
 
-		<span class="custom_form radio">
-			<label for="" class="custom_text">radio</label>
-			<input type="radio" id="" name="radio" value="" class="custom_item" />
-		</span>
+		<label class="label radio">
+			<span class="label_text">radio</span>
+			<input type="radio" name="radio" class="label_item" />
+		</label>
 
 		<h2>input[type='file']</h2>
-		<span class="custom_form file">
-			<span class="custom_text">선택한 파일이 없습니다.</span>
-			<input type="file" class="custom_item" title="파일" />
+		<span class="label file">
+			<span class="label_text">선택한 파일이 없습니다.</span>
+			<input type="file" class="label_item" title="파일" />
 		</span>
 		
 		<h3>multiple</h3>
-		<span class="custom_form file multiple">
-			<span class="custom_text">선택한 파일이 없습니다.</span>
-			<input type="file" multiple class="custom_item" title="다중 파일" />
+		<span class="label file multiple">
+			<span class="label_text">선택한 파일이 없습니다.</span>
+			<input type="file" multiple class="label_item" title="다중 파일" />
 		</span>
 
 		<h2>input[type='reset']</h2>
