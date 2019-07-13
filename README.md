@@ -23,7 +23,7 @@
 
 ## 메서드
 
-```javascript
+````javascript
     $(selector).label(method, value);
 ````
 
