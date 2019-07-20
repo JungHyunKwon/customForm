@@ -13,7 +13,7 @@
 	 * @param {string} method
 	 * @param {string} value
 	 * @return {object || string || array [object {
-		   $element : jQuery,
+		   $element : object,
 		   value : array [string] || string
 	   }]}
 	 */
@@ -113,14 +113,15 @@
 				$labelItem.on('change.label', function(event) {
 					var tagName = this.tagName,
 						type = this.type,
-						labelText = [];
+						labelText = [],
+						i = 0;
 
 					//셀렉트일 때
 					if(tagName === 'SELECT') {
 						var $selectedOption = $labelItem.find('option:selected'),
 							selectedOptionLength = $selectedOption.length;
 
-						for(var i = 0; i < selectedOptionLength; i++) {
+						for(; i < selectedOptionLength; i++) {
 							labelText[i] = $selectedOption.eq(i).text();
 						}
 
@@ -153,9 +154,10 @@
 
 						//라디오일 때
 						}else if(type === 'radio') {
-							var $labelRadioItem = $('.label.radio .label_item');
+							var $labelRadioItem = $('.label.radio .label_item'),
+								labelRadioItemLength = $labelRadioItem.length;
 
-							for(var i = 0, labelRadioItemLength = $labelRadioItem.length; i < labelRadioItemLength; i++) {
+							for(; i < labelRadioItemLength; i++) {
 								var $labelRadio = $labelRadioItem.eq(i).parents('.label.radio');
 
 								//체크되어 있을 때
@@ -182,7 +184,7 @@
 
 							var filesLength = files.length;
 
-							for(var i = 0; i < filesLength; i++) {
+							for(; i < filesLength; i++) {
 								var file = files[i];
 
 								labelText[i] = file.name || file;
