@@ -18,7 +18,7 @@
 	   }]}
 	 */
 	$.fn.label = function(method, value) {
-		var valueIsString = typeof value === 'string',
+		var isString = typeof value === 'string',
 			hasValue = arguments.hasOwnProperty(1),
 			result = [];
 
@@ -67,7 +67,7 @@
 				//값이 있을 때
 				if(hasValue) {
 					//문자일 때
-					if(valueIsString) {
+					if(isString) {
 						$labelItem.val(value);
 						$element.label('refresh');
 					}
@@ -83,7 +83,7 @@
 				//값이 있을 때
 				if(hasValue) {
 					//문자일 때
-					if(valueIsString) {
+					if(isString) {
 						_defaultLabelText = value;
 
 						$labelItem.triggerHandler('label:setDefault.label');
