@@ -39,10 +39,8 @@
 
 					//요소가 있을 때
 					if($form.length) {
-						//초기화
 						$form[0].reset();
 
-						//새로고침
 						$form.find('.label').label('refresh');
 
 						event.preventDefault();
@@ -90,7 +88,6 @@
 
 						$element.label('refresh');
 
-						//초기화
 						_defaultLabelText = undefined;
 					}
 				}else{
@@ -101,13 +98,11 @@
 						value : _defaultLabelText
 					});
 
-					//초기화
 					_defaultLabelText = undefined;
 				}
 			}else{
 				var defaultLabelText = $labelText.text();
 
-				//파괴
 				$element.label('destroy');
 
 				$labelItem.on('change.label', function(event) {
@@ -217,7 +212,6 @@
 					defaultLabelText = _defaultLabelText;
 				});
 
-				//새로고침
 				$element.label('refresh');
 			}
 		});
