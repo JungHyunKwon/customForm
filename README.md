@@ -33,8 +33,8 @@ refresh | | object | 새로고침
 destroy | | object | 소멸
 focus | | object | 포커스
 reset | | object | 초기화
-val | string | object \|\| array [object {$element : jQuery, value : array [string]}] \|\| string | 값을 지정하거나 값을 얻을 수 있습니다.
-default | string | jQuery \|\| array [object {$element : jQuery, value : array [string]}] \|\| string | 기본값을 지정하거나 기본값을 얻을 수 있습니다.
+val | string | object \|\| array \|\| string | 값을 지정하거나 값을 얻을 수 있습니다.
+default | string | object \|\| array \|\| string | 기본값을 지정하거나 기본값을 얻을 수 있습니다.
 
 ## 참고사항
 - .label 안에 .label_text와 .label_item이 각 1개씩만 존재해야 하며 중첩할 수 없습니다.

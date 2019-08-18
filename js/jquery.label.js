@@ -12,10 +12,7 @@
 	 * @name label
 	 * @param {string} method
 	 * @param {string} value
-	 * @return {object || string || array [object {
-		   $element : object,
-		   value : array [string] || string
-	   }]}
+	 * @return {object || string || array}
 	 */
 	$.fn.label = function(method, value) {
 		var isString = typeof value === 'string',
@@ -71,7 +68,7 @@
 					}
 				}else{
 					result.push({
-						$element : $element,
+						element : element,
 						value : $labelItem.val() || ''
 					});
 				}
@@ -94,7 +91,7 @@
 					$labelItem.triggerHandler('label:getDefault.label');
 
 					result.push({
-						$element : $element,
+						element : element,
 						value : _defaultLabelText
 					});
 
