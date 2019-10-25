@@ -26,8 +26,8 @@
 
 			//파괴일 때
 			if(method === 'destroy') {
-				$element.removeClass('focus active');
-				$element.add($labelItem).off('.label');
+				$element.removeClass('focus active').off('.label');
+				$labelItem.off('.label');
 
 			//초기화일 때
 			}else if($element.is(':reset')) {
